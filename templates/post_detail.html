@@ -2,9 +2,69 @@
 
 {% block content %}
 
-<div class="post-entry">
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.body }}</p>
-</div>
+{% block head %}
+
+<!-- <style>
+ .text-format {
+     white-space:inherit;
+     overflow: hidden;
+     text-overflow:ellipsis;
+     height:fit-content;
+     text-align: justify;
+     text-indent: 30px;
+}
+</style> -->
+
+{% endblock head %}
+
+
+    <!-- <div class="post-entry">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.body }}</p>
+    </div> -->
+
+    <div class="row text-center align-items-center">
+        <div class="col">
+          <div class="card border-info" style="width: 100%;">
+            <div class="card-body">
+              <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h5>
+              <p class="card-text text-justify" >{{ post.body }}</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+
+
+
+    <a href="{% url 'post_edit' post.pk %}"> 
+      <button type="submit" value="Edit" class="btn btn-primary">Edit Post</button>
+  </a>
+
+
+  <a href="{% url 'post_delete' post.pk %}">
+      <button type="submit" value="Delete" class="btn btn-primary">Delete Post</button>
+  </a>
+
+
+
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+<!-- 
+    <a href="{% url 'post_edit' post.pk %}"> 
+        <button type="submit" value="Edit" class="btn btn-primary">Edit Post</button>
+    </a>
+
+
+    <a href="{% url 'post_delete' post.pk %}">
+        <button type="submit" value="Delete" class="btn btn-primary">Delete Post</button>
+    </a> -->
 
 {% endblock content %}
+
+

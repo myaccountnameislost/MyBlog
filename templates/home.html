@@ -1,12 +1,63 @@
 {% extends 'base.html' %}
 
-{% block content %}
 
-    {% for post in object_list %}
-    <div class="post-entry">
-        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-        <p>{{ post.body }}</p>
-    </div>
-    {% endfor %}
+{% block head %}
+
+    
+</div>
+<!-- <style>
+  .my-container {
+    border: 1px;
+    background-color: chocolate;
+  }
+
+  .my-col{
+    background-color: crimson;
+  }
+
+  .my-row{
+    background-color: darkgreen;
+  }
+</style> -->
+<style>
+ .text-limit {
+     white-space:nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     height:2rem;
+}
+</style>
+
+{% endblock head %}
+
+{% block content %}
+    
+
+
+
+
+    <div>
+      {%  for post in object_list  %}
+          {% if forloop.counter0|divisibleby:3 %} <div class="row text-center align-items-center"> {%  endif %}
+            <div class="col-sm-4">
+                <div class="card">
+                      <div class="card" style="width: auto;">
+                        <div class="card-content"></div>
+                        <h6><div class="card-header">Blog Post</div></h6>
+                        <div class="card-body">
+                        <h5 class="card-title">
+                        <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h5>
+                        <p class="card-text text-truncate">{{ post.body }}</p>
+                        
+                        </div>
+                    </div><!-- card content -->
+                </div><!-- card -->
+            </div><!-- col-md-4 -->
+      {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><!-- row closing --><hr>{%  endif %}
+      {%  endfor %}
+   </div><!-- container -->
+
+
+
 
 {% endblock content %}
